@@ -5,6 +5,7 @@ const {
   createTask,
   readDetailTask,
   updateTask,
+  deleteTask,
 } = require("./model/task");
 const { log } = require("console");
 
@@ -70,7 +71,7 @@ yargs.command({
 
 // todo: UPDATE
 // node app/index.js update
-// node app/index.js update --id="4" --title="Learning ReactJS Super" --description="React Master From Zero To Hero"
+// node app/index.js update --id="7" --title="Learning ReactJS Super" --description="React Master From Zero To Hero"
 yargs.command({
   command: "update",
   builder: {
@@ -96,7 +97,7 @@ yargs.command({
 });
 
 // todo: DELETE
-// node app/index.js delete --id="123"
+// node app/index.js delete --id="4"
 yargs.command({
   command: "delete",
   builder: {
@@ -106,8 +107,12 @@ yargs.command({
   },
   handler: (agrs) => {
     const { id } = agrs;
-    console.log("delete");
-    console.log("🚀CHECK  id =", id);
+    const curTask = deleteTask(id);
+    if (curTask) {
+      console.log("🚀DELETED curTask =", curTask);
+    } else {
+      console.log("NOT FOUND!");
+    }
   },
 });
 
