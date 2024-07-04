@@ -97,7 +97,7 @@ yargs.command({
 });
 
 // todo: DELETE
-// node app/index.js delete --id="4"
+// node app/index.js delete --id="8"
 yargs.command({
   command: "delete",
   builder: {
