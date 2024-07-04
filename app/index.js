@@ -1,4 +1,6 @@
-const yargs = require("yargs");
+const yargs = require("yargs"); //common js
+const fs = require("fs"); //file system in nodejs
+const { readAllTask } = require("./model/task");
 
 // Create a command: node app/index.js test
 yargs.command({
@@ -28,13 +30,17 @@ yargs.command({
     console.log(agrs);
   },
 });
+
 // node app/index.js read-all
 yargs.command({
   command: "read-all",
   handler: () => {
-    console.log("read-all");
+    const result = readAllTask();
+    console.log("🚀CHECK  result =", result);
+    // console.log("read-all");
   },
 });
+
 // node app/index.js read-detail
 // node app/index.js read-detail --id="123456789"
 yargs.command({
@@ -49,6 +55,7 @@ yargs.command({
     console.log("🚀CHECK  id =", id);
   },
 });
+
 // node app/index.js update
 // node app/index.js update --id="123" --title="Learning NodeJS" --description="From Zero To Hero"
 yargs.command({
@@ -70,6 +77,7 @@ yargs.command({
     console.log("🚀CHECK  id, title, description =", id, title, description);
   },
 });
+
 // node app/index.js delete --id="123"
 yargs.command({
   command: "delete",
@@ -84,14 +92,6 @@ yargs.command({
     console.log("🚀CHECK  id =", id);
   },
 });
-
-/* 
-node app/index.js create
-node app/index.js read-all
-node app/index.js read-detail
-node app/index.js update
-node app/index.js delete
- */
 
 // Save command after create
 yargs.parse();
