@@ -1,6 +1,12 @@
 const yargs = require("yargs"); //common js
 const fs = require("fs"); //file system in nodejs
-const { readAllTask, createTask, readDetailTask } = require("./model/task");
+const {
+  readAllTask,
+  createTask,
+  readDetailTask,
+  updateTask,
+} = require("./model/task");
+const { log } = require("console");
 
 // Create a command: node app/index.js test
 yargs.command({
@@ -64,7 +70,7 @@ yargs.command({
 
 // todo: UPDATE
 // node app/index.js update
-// node app/index.js update --id="123" --title="Learning NodeJS" --description="From Zero To Hero"
+// node app/index.js update --id="4" --title="Learning ReactJS Super" --description="React Master From Zero To Hero"
 yargs.command({
   command: "update",
   builder: {
@@ -80,8 +86,12 @@ yargs.command({
   },
   handler: (agrs) => {
     const { id, title, description } = agrs;
-    console.log("UPDATE");
-    console.log("🚀CHECK  id, title, description =", id, title, description);
+    const task = updateTask(id, title, description);
+    if (task) {
+      console.log("UPDATED-task =", task);
+    } else {
+      console.log("NOT FOUND!");
+    }
   },
 });
 

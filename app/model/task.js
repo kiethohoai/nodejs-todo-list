@@ -29,4 +29,21 @@ const createTask = (title, description) => {
   return newTask;
 };
 
-module.exports = { readAllTask, createTask, readDetailTask };
+const updateTask = (id, title, description) => {
+  let taskList = readAllTask();
+  const index = taskList.findIndex((task) => task.id === id);
+
+  if (index > -1) {
+    // todo Update
+    const oldTask = taskList[index];
+    const newTask = { ...oldTask, title, description };
+    taskList[index] = newTask;
+    fs.writeFileSync("task.json", JSON.stringify(taskList));
+    return newTask;
+  } else {
+    // todo Notify
+    return false;
+  }
+};
+
+module.exports = { readAllTask, createTask, readDetailTask, updateTask };
