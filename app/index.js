@@ -1,6 +1,6 @@
 const yargs = require("yargs"); //common js
 const fs = require("fs"); //file system in nodejs
-const { readAllTask } = require("./model/task");
+const { readAllTask, createTask } = require("./model/task");
 
 // Create a command: node app/index.js test
 yargs.command({
@@ -10,9 +10,9 @@ yargs.command({
   },
 });
 
-// todo: CRUD COMMAND
+// todo: CREATE
 // node app/index.js create --title="Learning NodeJS"
-// node app/index.js create --title="Learning NodeJS" --desc="Fullstack Webs"
+// node app/index.js create --title="Learning NodeJS" --description="From Zero To Hero"
 yargs.command({
   command: "create",
   builder: {
@@ -24,13 +24,13 @@ yargs.command({
     },
   },
   handler: (agrs) => {
-    const { title, desc } = agrs;
-    console.log("🚀CHECK  title =", title);
-    console.log("🚀CHECK  desc =", desc);
-    console.log(agrs);
+    const { title, description } = agrs;
+    const newTask = createTask(title, description);
+    console.log("🚀CREATED newTask =", newTask)
   },
 });
 
+// todo: READ-ALL
 // node app/index.js read-all
 yargs.command({
   command: "read-all",
@@ -41,6 +41,7 @@ yargs.command({
   },
 });
 
+// todo: READ-DETAIL
 // node app/index.js read-detail
 // node app/index.js read-detail --id="123456789"
 yargs.command({
@@ -56,6 +57,7 @@ yargs.command({
   },
 });
 
+// todo: UPDATE
 // node app/index.js update
 // node app/index.js update --id="123" --title="Learning NodeJS" --description="From Zero To Hero"
 yargs.command({
@@ -78,6 +80,7 @@ yargs.command({
   },
 });
 
+// todo: DELETE
 // node app/index.js delete --id="123"
 yargs.command({
   command: "delete",
