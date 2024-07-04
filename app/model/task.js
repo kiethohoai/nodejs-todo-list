@@ -7,6 +7,12 @@ const readAllTask = () => {
   return taskJson;
 };
 
+const readDetailTask = (id) => {
+  let taskList = readAllTask();
+  const curTask = taskList.find((task) => task.id === id);
+  return curTask;
+};
+
 const createTask = (title, description) => {
   // prepare data
   const newTask = {
@@ -23,4 +29,4 @@ const createTask = (title, description) => {
   return newTask;
 };
 
-module.exports = { readAllTask, createTask };
+module.exports = { readAllTask, createTask, readDetailTask };

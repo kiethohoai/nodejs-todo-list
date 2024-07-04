@@ -6,3 +6,4 @@ Bai-5-Create-command-nodejs
 Bai-6-CRUD-command-nodejs
 Bai-7-Get-task-list-from-file-json
 Bai-8-Create-task-into-file-json
+Bai-9-Read-detail-task-from-file-json
